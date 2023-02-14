@@ -1,0 +1,47 @@
+
+This module combines the "smallnt" and "mtuple" software used 
+to create reduced ROOT trees for use in T2K oscillation analyses.
+
+The code should be run on T2K-SK MC with the following format:
+
+./build_minituple [t2k mc reg. expression] [channel] [fluxfile] [use n50-dt cut or not] |outfile.name| 
+
+
+Here [t2k mc reg. expression] is a regular expression indicating a collection of 
+files to be processed. That is these files will be added to a TTree for processing.
+
+[channel] is an integer corresponding to the type of input MC:
+
+  1:'numu'            
+  2:'numubar'         
+  3:'nue'             
+  4:'nuebar'          
+  5:'nue_x_numuflx'   
+
+[fluxfile] is the fullpath to a flux tuning file containing histograms of the form:
+enu_sk_tuned11b_[flavor] 
+
+[use n50-dt cut or not] is a switch for the n50-dt cut to reduce the neutron background in fQ decay e candidates
+
+|outfile.name| is an optional argument to specify the output ROOT file.
+
+A full usage example is presented in the pyscr/run.py file.
+
+Please note the following points.
+
+1) NC events in the nue_x_numu (appearance signal) are ignored 
+
+2) The code stores any event that passes one of the official T2K-SK event selections
+(currently 1 ring e-like, 1 ring mu-like, and 2-ring pi0) to the same output tree. 
+Events in the output can be differentiated by the use of the "iclass" variable 
+(see globalVars.h for details).
+
+**********************
+questions or comments should be directed to:
+Roger 
+raw@suketto.icrr.u-tokyo.ac.jp
+
+
+
+
+
